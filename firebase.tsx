@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics, Analytics } from "firebase/analytics";
 import { FirebaseApp } from "firebase/app";
+import { getDatabase } from 'firebase/database';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -22,4 +23,6 @@ if (typeof window !== "undefined") {
     analytics = getAnalytics(app);
 }
 
-export { app, analytics };
+const db = getDatabase(app);
+
+export { app, analytics, db };

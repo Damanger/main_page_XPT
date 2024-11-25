@@ -18,3 +18,9 @@
 .containerH h1{
     color: white;
 }
+
+.bannerImage {
+    width: 30rem;
+    height: auto;
+    border-radius: 25px;
+}

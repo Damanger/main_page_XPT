@@ -2,7 +2,7 @@
     position: absolute;
     top: 8vh;
     width: 100%;
-    height: 92vh;
+    height: 100%;
 }
 
 .logoutButton {
@@ -62,14 +62,110 @@
 
 .adminTitle{
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2rem;
+}
+
+.tituloBanner{
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+    margin-top: 12rem;
+}
+
+.actualizarBanner, .actualizarImagen{
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+}
+
+.actualizarBanner h2, .actualizarImagen h2{
+    font-size: 1.5rem;
+}
+
+.imagenBanner{
+    text-align: center;
+}
+
+.imagenBanner img{
+    width: 20rem;
+    height: auto;
+    border-radius: 25px;
+    display: flex;
+    margin: 1rem auto 0 auto;
+}
+
+.botonActualizar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botonActualizar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inputFile {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+}
+
+.previewContainer {
+    text-align: center;
+}
+
+.previewImage {
+    width: 150px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+.updateButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.updateButton:hover {
+    background-color: #45a049;
+}
+
+.updateButton:disabled {
+    cursor: not-allowed;
 }
 
 @media screen and (max-width: 430px){
     .loginLink{
         position: absolute;
         top: 65%;
+    }
+    .logoutButton {
+        padding: 0.5rem 1rem;
+    }
+    .adminTitle{
+        top: 12.5%;
     }
 }

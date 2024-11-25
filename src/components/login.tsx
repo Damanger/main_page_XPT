@@ -10,7 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
-    // Verifica si el usuario ya está autenticado al cargar el componente
+    // Verifica si el usuario ya está logueado al cargar el componente
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -20,12 +20,12 @@ const Login = () => {
                     navigate('/admin');
                 } else {
                     signOut(auth);
-                    navigate('/error');
+                    navigate('/not-found');
                 }
             }
         });
 
-        return () => unsubscribe(); // Limpia el listener cuando el componente se desmonte
+        return () => unsubscribe();
     }, [auth, navigate]);
 
     const handleGoogleLogin = async () => {
@@ -39,10 +39,10 @@ const Login = () => {
             const allowedEmails = ["omar.cruzr97@gmail.com", "santiago.rosas.leonel@gmail.com", "danielgaytan514@gmail.com", "onreg2455@gmail.com"];
 
             if (allowedEmails.includes(user.email as string)) {
-                navigate('/admin'); // Redirige a /admin
+                navigate('/admin');
             } else {
                 await signOut(auth);
-                navigate('/error');
+                navigate('/not-found');
             }
         } catch (error: any) {
             console.error('Error en el inicio de sesión:', error.message);

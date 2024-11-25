@@ -1,11 +1,11 @@
-import PrincipalSection from './heroSection'
+import HeroSection from './heroSection'
 import Goals from './goals'
 //import Style from '../css/landing.module.css'
 
 const Landing = () => {
     return (
         <>
-            <PrincipalSection />
+            <HeroSection />
             <Goals />
         </>
     )

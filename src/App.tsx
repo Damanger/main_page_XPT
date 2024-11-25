@@ -21,11 +21,8 @@ function App() {
         {/* Ruta para admins, protegida por login */}
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
         
-        {/* Ruta para manejar errores */}
-        <Route path="/error" element={<Error />} />
-        
         {/* Redirección para rutas no existentes */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<><Error /><Navigate to="/not-found" replace /></>} />
       </Routes>
     </Router>
   );
