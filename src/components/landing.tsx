@@ -1,5 +1,7 @@
 import HeroSection from './heroSection'
 import Goals from './goals'
+import Tools from './tools'
+import Jobs from './jobs'
 //import Style from '../css/landing.module.css'
 
 const Landing = () => {
@@ -7,6 +9,8 @@ const Landing = () => {
         <>
             <HeroSection />
             <Goals />
+            <Tools />
+            <Jobs />
         </>
     )
 }

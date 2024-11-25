@@ -104,7 +104,7 @@ const Admin = () => {
             {/* Mostrar el título de Firebase */}
             <div className={Style.tituloBanner}>
                 {bannerTitle ? (
-                    <p>El título actual del banner es: {bannerTitle}</p> 
+                    <p>El título actual del banner es: "{bannerTitle}"</p> 
                 ) : (
                     <Loader />
                 )}
