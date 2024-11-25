@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { app } from '../../firebase';
+import Loader from './loader';
 import Style from '../css/protectedRoute.module.css';
 
 interface ProtectedRouteProps {
@@ -36,7 +37,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     };
 
     if (isAuthenticated === null) {
-        return <div className={Style.loading}>Cargando...</div>;
+        return <Loader />;
     }
 
     if (!isAuthenticated) {

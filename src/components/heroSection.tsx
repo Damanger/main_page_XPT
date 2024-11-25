@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getDatabase, ref, get } from 'firebase/database';
 import { app } from '../../firebase';
+import Loader from './loader';
 import Style from '../css/heroSection.module.css';
 
 const HeroSection = () => {
@@ -39,15 +40,15 @@ const HeroSection = () => {
         <section className={Style.sectionH}>
             <div className={Style.containerH}>
                 {bannerTitle ? (
-                    <h1>{bannerTitle}</h1> // Mostrar el título obtenido de Firebase
+                    <h1>{bannerTitle}</h1>
                 ) : (
-                    <p>Cargando título...</p> // Mensaje mientras se carga el título
+                    <Loader />
                 )}
 
                 {bannerImage ? (
                     <img src={bannerImage} alt="Banner" className={Style.bannerImage} />
                 ) : (
-                    <p>Cargando imagen...</p> // Mensaje mientras se carga la imagen
+                    <p></p>
                 )}
             </div>
         </section>

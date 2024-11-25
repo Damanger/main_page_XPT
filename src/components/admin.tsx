@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, get, set } from 'firebase/database';
 import { app } from '../../firebase';
+import Loader from './loader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Style from '../css/protectedRoute.module.css';
 
 const Admin = () => {
@@ -15,7 +18,7 @@ const Admin = () => {
     useEffect(() => {
         const db = getDatabase(app);
         const auth = getAuth(app);
-        const user = auth.currentUser
+        const user = auth.currentUser;
 
         if (user) {
             setUserName(user.displayName || user.email || 'Usuario desconocido');
@@ -54,10 +57,11 @@ const Admin = () => {
             .then(() => {
                 setBannerTitle(newTitle);
                 setNewTitle('');
-                console.log('Título actualizado correctamente');
+                toast.success('Título actualizado correctamente');
             })
             .catch((error) => {
                 console.error('Error al actualizar el título: ', error);
+                toast.error('Error al actualizar el título');
             });
     };
 
@@ -70,10 +74,11 @@ const Admin = () => {
                 setBannerImage(newImage);
                 setNewImage('');
                 setImagePreview(null);
-                console.log('Imagen actualizada correctamente');
+                toast.success('Imagen actualizada correctamente');
             })
             .catch((error) => {
                 console.error('Error al actualizar la imagen: ', error);
+                toast.error('Error al actualizar la imagen');
             });
     };
 
@@ -93,6 +98,7 @@ const Admin = () => {
 
     return (
         <div>
+            <ToastContainer />
             <h1 className={Style.adminTitle}>Hola {userName}</h1>
 
             {/* Mostrar el título de Firebase */}
@@ -100,7 +106,7 @@ const Admin = () => {
                 {bannerTitle ? (
                     <p>El título actual del banner es: {bannerTitle}</p> 
                 ) : (
-                    <p>Cargando título...</p>
+                    <Loader />
                 )}
             </div>
 
@@ -122,7 +128,7 @@ const Admin = () => {
                 {bannerImage ? (
                     <img src={bannerImage} alt="Banner" className={Style.bannerImage} />
                 ) : (
-                    <p>Cargando imagen...</p>
+                    <Loader />
                 )}
             </div>
 
