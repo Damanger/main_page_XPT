@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /static/css/main.4a4c8c46.css
