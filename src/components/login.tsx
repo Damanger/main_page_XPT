@@ -15,7 +15,8 @@ const Login = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 // Si ya está logueado y autorizado, redirige a /admin
-                const allowedEmails = ["omar.cruzr97@gmail.com", "santiago.rosas.leonel@gmail.com", "danielgaytan514@gmail.com", "emmanuelroblesw@gmail.com"];
+                const allowedEmails = ["omar.cruzr97@gmail.com", "santiago.rosas.leonel@gmail.com", "danielgaytan514@gmail.com", 
+                    "emmanuelroblesw@gmail.com", "jordanayuzopacheco@gmail.com"];
                 if (allowedEmails.includes(user.email as string)) {
                     navigate('/admin');
                 } else {

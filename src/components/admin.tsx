@@ -97,61 +97,81 @@ const Admin = () => {
     };
 
     return (
-        <div>
+        <>
             <ToastContainer />
-            <h1 className={Style.adminTitle}>Hola {userName}</h1>
+            <div>
+                <h1 className={Style.adminTitle}>Hola {userName}</h1>
 
-            {/* Mostrar el título de Firebase */}
-            <div className={Style.tituloBanner}>
-                {bannerTitle ? (
-                    <p>El título actual del banner es: "{bannerTitle}"</p> 
-                ) : (
-                    <Loader />
-                )}
-            </div>
+                {/* Mostrar el título de Firebase */}
+                <div className={Style.tituloBanner}>
+                    {bannerTitle ? (
+                        <p>El título actual del banner es: "{bannerTitle}"</p>
+                    ) : (
+                        <Loader />
+                    )}
+                </div>
 
-            {/* Formulario para actualizar el título */}
-            <div className={Style.actualizarBanner}>
-                <h2>¿Quieres actualizar el título?</h2>
-                <input
-                    type="text"
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    placeholder="Nuevo título"
-                    className={Style.inputFile}
-                />
-                <button className={Style.updateButton} onClick={updateTitle}>Actualizar Título</button>
-            </div>
-
-            {/* Mostrar la imagen de Firebase */}
-            <div className={Style.imagenBanner}>
-                {bannerImage ? (
-                    <img src={bannerImage} alt="Banner" className={Style.bannerImage} />
-                ) : (
-                    <Loader />
-                )}
-            </div>
-
-            {/* Formulario para actualizar la imagen */}
-            <div className={Style.actualizarImagen}>
-                <h2>¿Quieres actualizar la imagen?</h2>
-                <div className={Style.botonActualizar}>
+                {/* Formulario para actualizar el título */}
+                <div className={Style.actualizarBanner}>
+                    <h2>¿Quieres actualizar el título?</h2>
                     <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
+                        type="text"
+                        value={newTitle}
+                        onChange={(e) => setNewTitle(e.target.value)}
+                        placeholder="Nuevo título"
                         className={Style.inputFile}
                     />
-                    {imagePreview && (
-                        <div className={Style.previewContainer}>
-                            <h3>Previsualización:</h3>
-                            <img src={imagePreview} className={Style.previewImage} alt="Previsualización" style={{ width: '150px', height: 'auto' }} />
-                        </div>
+                    <button className={Style.updateButton} onClick={updateTitle}>Actualizar Título</button>
+                </div>
+
+                {/* Mostrar la imagen de Firebase */}
+                <div className={Style.imagenBanner}>
+                    {bannerImage ? (
+                        <img src={bannerImage} alt="Banner" className={Style.bannerImage} />
+                    ) : (
+                        <Loader />
                     )}
-                    <button className={Style.updateButton} onClick={updateImage}>Actualizar Imagen</button>
+                </div>
+
+                {/* Formulario para actualizar la imagen */}
+                <div className={Style.actualizarImagen}>
+                    <h2>¿Quieres actualizar la imagen?</h2>
+                    <div className={Style.botonActualizar}>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className={Style.inputFile}
+                        />
+                        {imagePreview && (
+                            <div className={Style.previewContainer}>
+                                <h3>Previsualización:</h3>
+                                <img src={imagePreview} className={Style.previewImage} alt="Previsualización" style={{ width: '150px', height: 'auto' }} />
+                            </div>
+                        )}
+                        <button className={Style.updateButton} onClick={updateImage}>Actualizar Imagen</button>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div style={{backgroundColor:'white', color:'black', display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+                <h2>Goals</h2>
+            </div>
+
+            <div style={{display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+                <h2>Tools</h2>
+            </div>
+
+            <div style={{backgroundColor:'white', color:'black', display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+                <h2>Carrousel</h2>
+            </div>
+
+            <div style={{display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+                <h2>Jobs</h2>
+            </div>
+
+            
+        </>
     );
 };
 
