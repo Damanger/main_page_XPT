@@ -1,7 +1,30 @@
+
+import { useEffect, useState } from 'react';
+import { getDatabase, ref, get } from 'firebase/database';
+import { app } from '../../firebase';
 import { FaBullseye, FaUsers, FaRocket, FaLaptopCode } from 'react-icons/fa';
 import Style from '../css/goals.module.css';
 
 const Goals = () => {
+
+    const [goalsBackground, setGoalsBackground] = useState<string | null>(null);
+
+    useEffect(() => {
+        const db = getDatabase(app);
+
+        // Obtener el background desde la ruta '/goals/background'
+        const backgroundRef = ref(db, 'goals/background');
+        get(backgroundRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setGoalsBackground(snapshot.val());
+            } else {
+                console.log('No se encontró el background en la base de datos');
+            }
+        }).catch((error) => {
+            console.error('Error al obtener el background: ', error);
+        });
+    }, []);
+
     const goals = [
         {
             icon: <FaBullseye />,
@@ -26,7 +49,8 @@ const Goals = () => {
     ];
 
     return (
-        <section className={Style.sectionG}>
+        <section className={Style.sectionG} style={{
+            backgroundImage: goalsBackground ? `url(${goalsBackground})` : 'none'}}>
             <h1 className={Style.titleG}>Metas del Equipo</h1>
             <div className={Style.cardsContainer}>
                 {goals.map((goal, index) => (

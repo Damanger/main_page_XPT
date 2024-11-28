@@ -8,6 +8,7 @@ const Carrousel = () => {
 
     const [carrouselTools, setCarrouselTools] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
+    const [carrouselsBackground, setCarrouselBackground] = useState<string | null>(null);
 
     useEffect(() => {
         const db = getDatabase(app);
@@ -30,6 +31,18 @@ const Carrousel = () => {
                 setLoading(false);
             });
 
+            // Obtener el background desde la ruta '/carrousel/background'
+        const backgroundRef = ref(db, 'carrousel/background');
+        get(backgroundRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setCarrouselBackground(snapshot.val());
+            } else {
+                console.log('No se encontró el background en la base de datos');
+            }
+        }).catch((error) => {
+            console.error('Error al obtener el background: ', error);
+        });
+
     }, []);
 
     if (loading) {
@@ -37,7 +50,8 @@ const Carrousel = () => {
     }
 
     return (
-        <div className={Style.sectionC}>
+        <div className={Style.sectionC} style={{
+            backgroundImage: carrouselsBackground ? `url(${carrouselsBackground})` : 'none'}}>
             <div style={{ display: 'grid', placeItems: 'center', textAlign: 'center', color: 'white' }}>
                 <h1 className={Style.titleC}>Herramientas conocidas por el equipo</h1>
             </div>

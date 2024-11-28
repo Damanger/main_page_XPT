@@ -7,6 +7,9 @@
     height: fit-content;
     --color: #E1E1E1;
     background-color: #F3F3F3;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #000;
     z-index: 100;
     overflow: hidden;
@@ -33,8 +36,9 @@
 }
 
 .titleC {
-    color: #000;
-    font-size: 3rem;
+    color: black;
+    font-size: 2rem;
+    filter: drop-shadow(10px 10px 10px rgba(255, 255, 255, 0.5));
 }
 
 .tools {

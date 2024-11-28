@@ -8,3 +8,8 @@
     color: black;
     z-index: 100;
 }
+
+.jobsTitle{
+    font-size: 2rem;
+    filter: drop-shadow(10px 10px 10px rgba(255, 255, 255, 0.5));
+}

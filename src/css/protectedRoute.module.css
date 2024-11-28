@@ -12,6 +12,10 @@
     z-index: -1;
 }
 
+.adminL h2{
+    font-size: 2rem;
+}
+
 .bannerContent{
     position: relative;
     width: 100%;
@@ -85,7 +89,7 @@
     position: relative;
     margin-top: 15vh;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 2rem;
 }
 
@@ -103,7 +107,14 @@
     position: relative;
 }
 
-.actualizarBanner h2, .actualizarImagen h2{
+.actualizarImagen2{
+    color: black;
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+}
+
+.actualizarBanner h2, .actualizarImagen h2, .actualizarImagen2 h2{
     font-size: 1.5rem;
 }
 
@@ -224,6 +235,18 @@
         linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
     background-size: 55px 55px;
     color: black;
+}
+
+.toolItem {
+    display: inline-block;
+    text-align: center;
+    margin: 1rem;
+}
+
+.toolImage {
+    width: auto;
+    max-height: 50px;
+    margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 430px){
