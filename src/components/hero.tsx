@@ -7,6 +7,8 @@ import Style from '../css/hero.module.css';
 const HeroSection = () => {
     const [bannerImage, setBannerImage] = useState<string | null>(null);
     const [bannerTitle, setBannerTitle] = useState<string | null>(null);
+    const [bannerText, setBannerText] = useState<string | null>(null);
+    const [bannerBackground, setBannerBackground] = useState<string | null>(null);
 
     useEffect(() => {
         const db = getDatabase(app);
@@ -34,13 +36,41 @@ const HeroSection = () => {
         }).catch((error) => {
             console.error('Error al obtener el título: ', error);
         });
+
+        // Obtener el texto desde la ruta '/banner/texto
+        const textRef = ref(db, 'banner/texto');
+        get(textRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setBannerText(snapshot.val());
+            } else {
+                console.log('No se encontró el texto en la base de datos');
+            }
+        }).catch((error) => {
+            console.error('Error al obtener el texto: ', error);
+        });
+
+        // Obtener el background desde la ruta '/banner/background'
+        const backgroundRef = ref(db, 'banner/background');
+        get(backgroundRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setBannerBackground(snapshot.val());
+            } else {
+                console.log('No se encontró el background en la base de datos');
+            }
+        }).catch((error) => {
+            console.error('Error al obtener el background: ', error);
+        });
     }, []);
 
     return (
-        <section className={Style.sectionH}>
+        <section className={Style.sectionH} style={{
+            backgroundImage: bannerBackground ? `url(${bannerBackground})` : 'none'}}>
             <div className={Style.containerH}>
                 {bannerTitle ? (
-                    <h1>{bannerTitle}</h1>
+                    <span>
+                        <h1>{bannerTitle}</h1>
+                        <p>{bannerText}</p>
+                    </span>
                 ) : (
                     <Loader />
                 )}

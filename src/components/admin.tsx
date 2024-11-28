@@ -10,10 +10,14 @@ import Style from '../css/protectedRoute.module.css';
 const Admin = () => {
     const [bannerTitle, setBannerTitle] = useState<string | null>(null);
     const [bannerImage, setBannerImage] = useState<string | null>(null);
+    const [bannerText, setBannerText] = useState<string | null>(null);
+    const [bannerBackground, setBannerBackground] = useState<string | null>(null);
     const [newTitle, setNewTitle] = useState<string>('');
     const [newImage, setNewImage] = useState<string>('');
     const [userName, setUserName] = useState<string>('');
+    const [newText, setNewText] = useState<string>('');
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [backgroundPreview, setBackgroundPreview] = useState<string | null>(null);
 
     useEffect(() => {
         const db = getDatabase(app);
@@ -36,6 +40,18 @@ const Admin = () => {
             console.error('Error al obtener el título: ', error);
         });
 
+        // Obtener el texto desde la ruta '/banner/texto'
+        const textRef = ref(db, 'banner/texto');
+        get(textRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setBannerText(snapshot.val());
+            } else {
+                console.log('No se encontró el texto en la base de datos');
+            }
+        }).catch((error) => {
+            console.error('Error al obtener el texto: ', error);
+        });
+
         // Obtener la imagen desde la ruta '/banner/imagen'
         const imageRef = ref(db, 'banner/imagen');
         get(imageRef).then((snapshot) => {
@@ -46,6 +62,18 @@ const Admin = () => {
             }
         }).catch((error) => {
             console.error('Error al obtener la imagen: ', error);
+        });
+
+        // Obtener el background desde la ruta '/banner/background'
+        const backgroundRef = ref(db, 'banner/background');
+        get(backgroundRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                setBannerBackground(snapshot.val());
+            } else {
+                console.log('No se encontró el background en la base de datos');
+            }
+        }).catch((error) => {
+            console.error('Error al obtener el background: ', error);
         });
     }, []);
 
@@ -62,6 +90,22 @@ const Admin = () => {
             .catch((error) => {
                 console.error('Error al actualizar el título: ', error);
                 toast.error('Error al actualizar el título');
+            });
+    };
+
+    //Función para actualizar el texto en Firebase
+    const updateText = () => {
+        const db = getDatabase(app);
+        const textRef = ref(db, 'banner/texto');
+        set(textRef, newText)
+            .then(() => {
+                setBannerText(newText);
+                setNewText('');
+                toast.success('Texto actualizado correctamente');
+            })
+            .catch((error) => {
+                console.error('Error al actualizar el texto: ', error);
+                toast.error('Error al actualizar el texto');
             });
     };
 
@@ -82,6 +126,23 @@ const Admin = () => {
             });
     };
 
+    // Función para actualizar el background en Firebase
+    const updateBackground = () => {
+        const db = getDatabase(app);
+        const backgroundRef = ref(db, 'banner/background');
+        set(backgroundRef, newImage)
+            .then(() => {
+                setBannerBackground(newImage);
+                setNewImage('');
+                setBackgroundPreview(null);
+                toast.success('Background actualizado correctamente');
+            })
+            .catch((error) => {
+                console.error('Error al actualizar el background: ', error);
+                toast.error('Error al actualizar el background');
+            });
+    };
+
     // Función para manejar el cambio de imagen y convertirla a base64
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files ? e.target.files[0] : null;
@@ -96,10 +157,24 @@ const Admin = () => {
         }
     };
 
+    // Función para manejar el cambio de background y convertirla a base64
+    const handleBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files ? e.target.files[0] : null;
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64Image = reader.result as string;
+                setNewImage(base64Image);
+                setBackgroundPreview(base64Image);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
     return (
-        <div className={Style.adminL}>
+        <section className={Style.adminL}>
             <ToastContainer />
-            <div>
+            <div className={Style.bannerContent}>
                 <h1 className={Style.adminTitle}>Hola {userName}</h1>
 
                 {/* Mostrar el título de Firebase */}
@@ -124,18 +199,39 @@ const Admin = () => {
                     <button className={Style.updateButton} onClick={updateTitle}>Actualizar Título</button>
                 </div>
 
-                {/* Mostrar la imagen de Firebase */}
-                <div className={Style.imagenBanner}>
-                    {bannerImage ? (
-                        <img src={bannerImage} alt="Banner" className={Style.bannerImage} />
+                {/* Mostrar el texto de Firebase */}
+                <div className={Style.tituloBanner}>
+                    {bannerText ? (
+                        <p>El texto actual del banner es: "{bannerText}"</p>
                     ) : (
                         <Loader />
                     )}
                 </div>
 
+                {/* Formulario para actualizar el texto */}
+                <div className={Style.actualizarBanner}>
+                    <h2>¿Quieres actualizar el texto?</h2>
+                    <input
+                        type="text"
+                        value={newText}
+                        onChange={(e) => setNewText(e.target.value)}
+                        placeholder="Nuevo texto"
+                        className={Style.inputFile}
+                    />
+                    <button className={Style.updateButton} onClick={updateText}>Actualizar Texto</button>
+                </div>
+
                 {/* Formulario para actualizar la imagen */}
                 <div className={Style.actualizarImagen}>
                     <h2>¿Quieres actualizar la imagen?</h2>
+                    {/* Mostrar la imagen de Firebase */}
+                    <div className={Style.imagenBanner}>
+                        {bannerImage ? (
+                            <img src={bannerImage} alt="Banner" className={Style.bannerImage} />
+                        ) : (
+                            <Loader />
+                        )}
+                    </div>
                     <div className={Style.botonActualizar}>
                         <input
                             type="file"
@@ -150,6 +246,34 @@ const Admin = () => {
                             </div>
                         )}
                         <button className={Style.updateButton} onClick={updateImage}>Actualizar Imagen</button>
+                    </div>
+                </div>
+
+                {/* Formulario para actualizar la imagen de fondo */}
+                <div className={Style.actualizarImagen}>
+                    <h2>¿Quieres actualizar la imagen de background?</h2>
+                    {/* Mostrar la imagen de background de Firebase */}
+                    <div className={Style.imagenBanner}>
+                        {bannerBackground ? (
+                            <img src={bannerBackground} alt="Banner" className={Style.bannerImage} />
+                        ) : (
+                            <Loader />
+                        )}
+                    </div>
+                    <div className={Style.botonActualizar}>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleBackgroundChange}
+                            className={Style.inputFile}
+                        />
+                        {imagePreview && (
+                            <div className={Style.previewContainer}>
+                                <h3>Previsualización:</h3>
+                                <img src={imagePreview} className={Style.previewImage} alt="Previsualización" style={{ width: '150px', height: 'auto' }} />
+                            </div>
+                        )}
+                        <button className={Style.updateButton} onClick={updateBackground}>Actualizar Background</button>
                     </div>
                 </div>
             </div>
@@ -170,7 +294,7 @@ const Admin = () => {
                 <h2>Jobs</h2>
             </div>
             
-        </div>
+        </section>
     );
 };
 
