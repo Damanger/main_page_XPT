@@ -6,7 +6,6 @@ import Loader from './loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Style from '../css/protectedRoute.module.css';
-import { Link } from 'react-router-dom';
 
 const Admin = () => {
     const [bannerTitle, setBannerTitle] = useState<string | null>(null);
