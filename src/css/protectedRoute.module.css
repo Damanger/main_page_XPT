@@ -172,6 +172,38 @@
     cursor: not-allowed;
 }
 
+.adminGoals{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.adminCarrousel{
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.adminCarrousel span a{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.adminJobs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 @media screen and (max-width: 430px){
     .loginLink{
         position: absolute;

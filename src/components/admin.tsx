@@ -6,6 +6,7 @@ import Loader from './loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Style from '../css/protectedRoute.module.css';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
     const [bannerTitle, setBannerTitle] = useState<string | null>(null);
@@ -278,19 +279,19 @@ const Admin = () => {
                 </div>
             </div>
 
-            <div style={{backgroundColor:'white', color:'black', display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+            <div className={Style.adminGoals}>
                 <h2>Goals</h2>
             </div>
 
-            <div style={{display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
-                <h2>Tools</h2>
-            </div>
-
-            <div style={{backgroundColor:'white', color:'black', display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+            <div className={Style.adminCarrousel}>
                 <h2>Carrousel</h2>
+                <span>
+                    <p>Los íconos los pueden tomar de: </p>
+                    <Link to="https://github.com/devicons/devicon/tree/v2.16.0/icons">SVG´s icons</Link>
+                </span>
             </div>
 
-            <div style={{display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
+            <div className={Style.adminJobs}>
                 <h2>Jobs</h2>
             </div>
             
