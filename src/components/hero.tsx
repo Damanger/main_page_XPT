@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getDatabase, ref, get } from 'firebase/database';
 import { app } from '../../firebase';
 import Loader from './loader';
-import Style from '../css/heroSection.module.css';
+import Style from '../css/hero.module.css';
 
 const HeroSection = () => {
     const [bannerImage, setBannerImage] = useState<string | null>(null);

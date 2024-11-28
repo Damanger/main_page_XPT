@@ -1,3 +1,13 @@
+.adminL{
+    text-align: center;
+    font-size: 2rem;
+    background-color: black;
+    position: absolute;
+    top: -8vh;
+    width: 100%;
+    z-index: -1;
+}
+
 .container{
     position: absolute;
     top: 8vh;
@@ -16,9 +26,6 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.logoutButton {
     border: 2px solid #f44336;
     background-color: transparent;
     color: white;

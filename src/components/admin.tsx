@@ -97,7 +97,7 @@ const Admin = () => {
     };
 
     return (
-        <>
+        <div className={Style.adminL}>
             <ToastContainer />
             <div>
                 <h1 className={Style.adminTitle}>Hola {userName}</h1>
@@ -169,9 +169,8 @@ const Admin = () => {
             <div style={{display:'flex', justifyContent:'center', alignItems:'center', textAlign:'center'}}>
                 <h2>Jobs</h2>
             </div>
-
             
-        </>
+        </div>
     );
 };
 
