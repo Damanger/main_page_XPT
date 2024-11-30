@@ -4,7 +4,11 @@ import { app } from '../../firebase';
 import Loader from './loader';
 import Style from '../css/hero.module.css';
 
-const HeroSection = () => {
+interface SectionProps {
+    id: string;
+}
+
+const HeroSection: React.FC<SectionProps> = ({ id }) => {
     const [bannerImage, setBannerImage] = useState<string | null>(null);
     const [bannerTitle, setBannerTitle] = useState<string | null>(null);
     const [bannerText, setBannerText] = useState<string | null>(null);
@@ -63,7 +67,7 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section className={Style.sectionH} style={{
+        <section className={Style.sectionH} id={id} style={{
             backgroundImage: bannerBackground ? `url(${bannerBackground})` : 'none'}}>
             <div className={Style.containerH}>
                 {bannerTitle ? (

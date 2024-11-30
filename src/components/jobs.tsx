@@ -1,8 +1,12 @@
 import Style from '../css/jobs.module.css'
 
-const Jobs = () => {
+interface SectionProps {
+    id: string;
+}
+
+const Jobs: React.FC<SectionProps> = ({ id }) => {
     return (
-        <section className={Style.sectionJ}>
+        <section className={Style.sectionJ} id={id}>
             <h1 className={Style.jobsTitle}>Jobs</h1>
         </section>
     )

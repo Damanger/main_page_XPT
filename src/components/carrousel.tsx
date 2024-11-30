@@ -4,7 +4,11 @@ import { app } from '../../firebase';
 import Loader from './loader';
 import Style from '../css/carrousel.module.css';
 
-const Carrousel = () => {
+interface SectionProps {
+    id: string;
+}
+
+const Carrousel: React.FC<SectionProps> = ({ id }) => {
 
     const [carrouselTools, setCarrouselTools] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
@@ -50,7 +54,7 @@ const Carrousel = () => {
     }
 
     return (
-        <div className={Style.sectionC} style={{
+        <section className={Style.sectionC} id={id} style={{
             backgroundImage: carrouselsBackground ? `url(${carrouselsBackground})` : 'none'}}>
             <div style={{ display: 'grid', placeItems: 'center', textAlign: 'center', color: 'white' }}>
                 <h1 className={Style.titleC}>Herramientas conocidas por el equipo</h1>
@@ -73,7 +77,7 @@ const Carrousel = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 

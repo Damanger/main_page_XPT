@@ -7,10 +7,10 @@ import Jobs from './jobs'
 const Landing = () => {
     return (
         <>
-            <HeroSection />
-            <Goals />
-            <Carrousel />
-            <Jobs />
+            <HeroSection id="XPT" />
+            <Goals id="Metas" />
+            <Carrousel id="Herramientas" />
+            <Jobs id="Trabajos" />
         </>
     )
 }

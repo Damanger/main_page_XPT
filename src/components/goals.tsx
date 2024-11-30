@@ -5,7 +5,11 @@ import { app } from '../../firebase';
 import { FaBullseye, FaUsers, FaRocket, FaLaptopCode } from 'react-icons/fa';
 import Style from '../css/goals.module.css';
 
-const Goals = () => {
+interface SectionProps {
+    id: string;
+}
+
+const Goals: React.FC<SectionProps> = ({ id }) => {
 
     const [goalsBackground, setGoalsBackground] = useState<string | null>(null);
 
@@ -49,7 +53,7 @@ const Goals = () => {
     ];
 
     return (
-        <section className={Style.sectionG} style={{
+        <section className={Style.sectionG} id={id} style={{
             backgroundImage: goalsBackground ? `url(${goalsBackground})` : 'none'}}>
             <h1 className={Style.titleG}>Metas del Equipo</h1>
             <div className={Style.cardsContainer}>
