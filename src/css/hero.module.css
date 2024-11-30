@@ -77,14 +77,12 @@
     .containerH h1,
     .containerH p {
         animation: fadeInDown ease-in-out 2s forwards;
-        animation-delay: 2s;
     }
     .containerH h1 {
         font-size: 2.5rem;
     }
     .bannerImage {
         animation: fadeInUp ease-in-out 2s forwards;
-        animation-delay: 2s;
         height: 20rem;
     }
 }
@@ -101,7 +99,7 @@
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(50px);
     }
     100% {
         opacity: 1;
@@ -112,7 +110,7 @@
 @keyframes fadeInDown {
     0% {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-50px);
     }
     100% {
         opacity: 1;
@@ -123,7 +121,7 @@
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(-50px);
     }
     100% {
         opacity: 1;
@@ -134,7 +132,7 @@
 @keyframes fadeInRight {
     0% {
         opacity: 0;
-        transform: translateX(20px);
+        transform: translateX(50px);
     }
     100% {
         opacity: 1;

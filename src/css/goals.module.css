@@ -37,7 +37,18 @@
     padding: 1.5rem;
     width: 12.5rem;
     text-align: center;
-    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%; 
+    background: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+    border-radius: 8px 0 0 8px;
 }
 
 .card:hover {
